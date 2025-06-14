@@ -1,0 +1,38 @@
+{
+  "name": "dappr",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Dappr - A Solana DApp for academic and industry collaboration",
+  "workspaces": [
+    "app",
+    "programs/*"
+  ],
+  "scripts": {
+    "build:program": "anchor build",
+    "build:app": "yarn workspace dappr-frontend build",
+    "build": "yarn build:program && yarn build:app",
+    "deploy:devnet": "anchor deploy --provider.cluster devnet",
+    "deploy:local": "anchor deploy --provider.cluster localnet",
+    "test": "anchor test --skip-lint",
+    "test:local": "anchor test --skip-lint --provider.cluster localnet",
+    "start:validator": "solana-test-validator --reset",
+    "start:app": "yarn workspace dappr-frontend dev",
+    "start": "concurrently \"yarn start:validator\" \"yarn start:app\"",
+    "lint": "eslint . --ext js,jsx,ts,tsx",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.29.0",
+    "@project-serum/anchor": "^0.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "concurrently": "^8.2.0",
+    "eslint": "^8.45.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.1.6"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

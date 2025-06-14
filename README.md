@@ -1,13 +1,15 @@
-# DAPPR - Solana DApp Starter
+# Dappr - Solana DApp for Academic and Industry Collaboration
 
-A modern Solana DApp built with Anchor (Rust) and React/TypeScript, featuring wallet connection and basic program interaction.
+A decentralized application built on Solana blockchain for connecting academic researchers with industry partners.
 
 ## 🚀 Features
 
 - **Solana Program**: Built with Anchor framework in Rust
 - **React Frontend**: Modern UI with TypeScript and Tailwind CSS
-- **Wallet Integration**: Connect with Phantom and other Solana wallets
-- **Devnet Ready**: Pre-configured for Solana devnet deployment
+- **Wallet Integration**: Connect with Phantom and Solflare wallets
+- **Multi-Environment**: Test on localnet, devnet, and mainnet-beta
+- **Comprehensive Testing**: End-to-end testing with Anchor and TypeScript
+- **Developer Friendly**: Pre-configured with useful scripts and tooling
 
 ## 📋 Prerequisites
 
@@ -33,21 +35,67 @@ cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
 avm install latest
 avm use latest
 
-# Install Node dependencies
-cd app
-yarn install
+# Install Node.js (v18+ required)
+# Download from https://nodejs.org/ or use nvm
+
+# Install Yarn (if not using npm)
+npm install -g yarn
 ```
 
-### 2. Configure Solana CLI
+### 2. Clone and Setup Project
+
+```bash
+# Clone the repository
+git clone https://github.com/Lucky77-afk/Dappr-Rust.git
+cd Dappr-Rust
+
+# Install root dependencies
+yarn install
+
+# Install app dependencies
+cd app
+yarn install
+cd ..
+```
+
+### 3. Configure Environment
+
+1. Copy the example environment file:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Generate test keypairs:
+   ```bash
+   mkdir -p test-keys
+   solana-keygen new --no-bip39-passphrase --outfile test-keys/academic.json
+   solana-keygen new --no-bip39-passphrase --outfile test-keys/industry.json
+   ```
+
+3. Update `.env` with your configuration:
+   ```env
+   NEXT_PUBLIC_NETWORK=devnet
+   NEXT_PUBLIC_RPC_DEVNET=https://api.devnet.solana.com
+   NEXT_PUBLIC_RPC_LOCAL=http://127.0.0.1:8899
+   NEXT_PUBLIC_PROGRAM_ID=YOUR_PROGRAM_ID_HERE
+   ACADEMIC_WALLET=test-keys/academic.json
+   INDUSTRY_WALLET=test-keys/industry.json
+   ```
+
+### 4. Configure Solana CLI
 
 ```bash
 # Set to devnet
 solana config set --url devnet
 
-# Create a new wallet (if needed)
-solana-keygen new
+# Check your configuration
+solana config get
 
-# Airdrop SOL (devnet)
+# Airdrop SOL (devnet - request multiple times if needed)
+solana airdrop 2
+
+# Check your balance
+solana balance
 solana airdrop 1
 
 # Verify configuration
