@@ -1,0 +1,55 @@
+{
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "useTabs": false,
+  "trailingComma": "es5",
+  "printWidth": 100,
+  "bracketSpacing": true,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": "*.json",
+      "options": {
+        "parser": "json"
+      }
+    },
+    {
+      "files": "*.{ts,tsx,js,jsx}",
+      "options": {
+        "parser": "typescript"
+      }
+    },
+    {
+      "files": "*.{yaml,yml}",
+      "options": {
+        "parser": "yaml"
+      }
+    },
+    {
+      "files": "*.{md,mdx}",
+      "options": {
+        "parser": "markdown"
+      }
+    },
+    {
+      "files": "*.{css,scss}",
+      "options": {
+        "parser": "css"
+      }
+    },
+    {
+      "files": "*.{graphql,gql}",
+      "options": {
+        "parser": "graphql"
+      }
+    },
+    {
+      "files": "*.{html,vue}",
+      "options": {
+        "parser": "html"
+      }
+    }
+  ]
+}

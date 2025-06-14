@@ -1,0 +1,30 @@
+[features]
+seeds = false
+skip-lint = false
+[programs.localnet]
+dappr = "DAPPR_PROGRAM_ID"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "devnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -t 1000000 tests/**/*.ts"
+
+[programs.devnet]
+dappr = "DAPPR_PROGRAM_ID"
+
+[test.validator]
+url = "https://api.devnet.solana.com"
+
+[test]
+compute_unit_price = 1
+skip_lint = false
+[test.validator]
+geyser_plugin_config = """
+[lib]
+crate-type = ["cdylib", "lib"]
+"""

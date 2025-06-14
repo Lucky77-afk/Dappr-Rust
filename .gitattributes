@@ -1,0 +1,90 @@
+# Set default behavior to automatically normalize line endings
+* text=auto eol=lf
+
+# Declare text files that should always be normalized and converted to native line endings on checkout
+*.c text
+*.h text
+*.rs text
+*.toml text
+*.json text
+*.md text
+*.yaml text
+*.yml text
+*.js text
+*.ts text
+*.tsx text
+*.jsx text
+*.css text
+*.scss text
+*.html text
+*.sh text
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.sln text eol=crlf
+
+# Declare binary files that should not be modified
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.eot binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.otf binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.tar binary
+*.dmg binary
+*.pkg binary
+*.exe binary
+*.dll binary
+*.so binary
+*.dylib binary
+*.a binary
+*.o binary
+*.class binary
+*.jar binary
+*.war binary
+*.ear binary
+*.sar binary
+*.msi binary
+*.msm binary
+*.msp binary
+*.msix binary
+*.msixbundle binary
+*.appx binary
+*.appxbundle binary
+*.pdb binary
+*.suo binary
+*.user binary
+*.userosscache binary
+*.sln.docstates binary
+*.userprefs binary
+*.jfm binary
+*.pfx binary
+*.p12 binary
+*.snk binary
+*.pfx binary
+*.p7b binary
+*.p7c binary
+*.p7m binary
+*.p7r binary
+*.p7s binary
+*.p8 binary
+*.p10 binary
+*.spc binary
+*.crl binary
+*.der binary
+*.crt binary
+*.cer binary
+*.pem binary
+*.odx binary
+*.scc binary
+*.vspscc binary
+*.vssscc binary
+*.nupkg binary

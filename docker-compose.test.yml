@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # Solana Validator for testing
+  solana-validator:
+    extends:
+      file: docker-compose.yml
+      service: solana-validator
+    
+  # Test runner
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    environment:
+      - NODE_ENV=test
+      - REACT_APP_SOLANA_RPC_URL=http://solana-validator:8899
+    depends_on:
+      - solana-validator
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: sh -c "yarn test --watchAll=false"
+
+  # Database for testing
+  test-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test123
+      POSTGRES_DB: test
+    ports:
+      - "5433:5432"
+    volumes:
+      - test_db_data:/var/lib/postgresql/data
+
+volumes:
+  solana-ledger:
+  test_db_data:

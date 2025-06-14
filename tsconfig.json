@@ -1,0 +1,75 @@
+{
+  "compilerOptions": {
+    /* Base Options */
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2020",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitThis": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitAny": true,
+    "noImplicitUseStrict": false,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "alwaysStrict": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./app/src/*"],
+      "@components/*": ["./app/src/components/*"],
+      "@pages/*": ["./app/src/pages/*"],
+      "@styles/*": ["./app/src/styles/*"],
+      "@utils/*": ["./app/src/utils/*"],
+      "@hooks/*": ["./app/src/hooks/*"],
+      "@contexts/*": ["./app/src/contexts/*"],
+      "@services/*": ["./app/src/services/*"],
+      "@types/*": ["./app/src/types/*"]
+    },
+    "types": ["vite/client", "node"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./app/src/types"
+    ]
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.d.ts",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    ".next",
+    ".vercel",
+    ".github",
+    "coverage",
+    "**/*.d.ts",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ]
+}

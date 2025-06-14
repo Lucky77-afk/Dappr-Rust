@@ -1,0 +1,23 @@
+# Default owners for everything in the repo
+*       @your-github-username
+
+# Core team owns the core functionality
+/programs/    @your-github-username
+
+# Frontend team owns the React app
+/app/         @your-github-username
+
+# Infrastructure as code
+/docker-compose*.yml  @your-github-username
+/Dockerfile*  @your-github-username
+
+# GitHub workflows
+/.github/workflows/  @your-github-username
+
+# Documentation
+/README.md    @your-github-username
+/CONTRIBUTING.md @your-github-username
+/CODE_OF_CONDUCT.md @your-github-username
+/SECURITY.md  @your-github-username
+/CHANGELOG.md @your-github-username
+/ROADMAP.md   @your-github-username

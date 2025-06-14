@@ -1,0 +1,25 @@
+# Browsers that we support
+
+# Modern browsers with latest 2 versions
+> 0.2%
+last 2 versions
+not dead
+not op_mini all
+
+# Browsers with at least 1% market share and still receiving updates
+> 1%
+not dead
+
+# Specific browser versions
+Chrome >= 60
+Firefox >= 54
+Safari >= 10.1
+iOS >= 10.3
+Edge >= 15
+Android >= 6
+
+# Node.js versions
+node 12.22.0
+node 14.17.0
+node 16.0.0
+node 18.0.0

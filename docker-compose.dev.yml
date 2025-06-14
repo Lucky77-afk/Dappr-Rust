@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # Solana Validator
+  solana-validator:
+    extends:
+      file: docker-compose.yml
+      service: solana-validator
+    
+  # Frontend Development
+  frontend:
+    build: 
+      context: ./app
+      target: development
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_SOLANA_RPC_URL=http://localhost:8899
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./app:/app
+      - /app/node_modules
+    depends_on:
+      - solana-validator
+    command: sh -c "yarn install && yarn dev"
+
+  # Redis for caching
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  # PostgreSQL database
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: dappr
+      POSTGRES_PASSWORD: dappr123
+      POSTGRES_DB: dappr_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  solana-ledger:
+  postgres_data:
+  redis_data:

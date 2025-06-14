@@ -1,0 +1,69 @@
+# Git
+.git
+.gitignore
+.gitmodules
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+/target/
+**/dist/
+**/build/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Solana specific
+.anchor/
+test-ledger/
+
+# Local development
+.cache/
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Misc
+*.pem
+*.p12
+*.key
+*.crt
+*.cer
+*.pfx
+
+# Local development
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

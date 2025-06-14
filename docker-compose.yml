@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # Solana Validator
+  solana-validator:
+    image: solanalabs/solana:v1.14.17
+    container_name: solana-validator
+    ports:
+      - "8899:8899"  # RPC
+      - "8900:8900"  # Gossip
+    volumes:
+      - solana-ledger:/root/ledger/
+    command: >
+      bash -c "
+      solana config set --url http://localhost:8899 &&
+      solana-keygen new --no-bip39-passphrase -o ~/.config/solana/id.json &&
+      solana config set --keypair ~/.config/solana/id.json &&
+      solana airdrop 1000 &&
+      solana-test-validator --rpc-port 8899 --reset --ledger /root/ledger
+      "
+  # Frontend
+  frontend:
+    build: 
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_SOLANA_RPC_URL=http://solana-validator:8899
+    depends_on:
+      - solana-validator
+    volumes:
+      - ./app:/app
+      - /app/node_modules
+
+volumes:
+  solana-ledger:
