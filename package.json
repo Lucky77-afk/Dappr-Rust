@@ -10,27 +10,41 @@
   "scripts": {
     "build:program": "anchor build",
     "build:app": "yarn workspace dappr-frontend build",
-    "build": "yarn build:program && yarn build:app",
+    "build:sdk": "yarn workspace @dappr/sdk build",
+    "build": "yarn build:program && yarn build:app && yarn build:sdk",
     "deploy:devnet": "anchor deploy --provider.cluster devnet",
     "deploy:local": "anchor deploy --provider.cluster localnet",
     "test": "anchor test --skip-lint",
     "test:local": "anchor test --skip-lint --provider.cluster localnet",
+    "test:escrow": "cd sdk && ts-node test/test-escrow.ts",
+    "test:escrow:watch": "nodemon --watch sdk/src --watch sdk/test -e ts --exec \"yarn test:escrow\"",
+    "init:escrow": "cd scripts && ts-node init-escrow.ts",
     "start:validator": "solana-test-validator --reset",
     "start:app": "yarn workspace dappr-frontend dev",
     "start": "concurrently \"yarn start:validator\" \"yarn start:app\"",
     "lint": "eslint . --ext js,jsx,ts,tsx",
+    "lint:fix": "eslint . --ext js,jsx,ts,tsx --fix",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
   },
   "dependencies": {
     "@coral-xyz/anchor": "^0.29.0",
-    "@project-serum/anchor": "^0.24.2"
+    "@project-serum/anchor": "^0.24.2",
+    "@solana/spl-token": "^0.4.13",
+    "@solana/web3.js": "^1.98.2"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
+    "@types/bn.js": "^5.2.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.19.0",
+    "@typescript-eslint/eslint-plugin": "^8.34.0",
+    "@typescript-eslint/parser": "^8.34.0",
     "concurrently": "^8.2.0",
-    "eslint": "^8.45.0",
-    "prettier": "^3.0.0",
-    "typescript": "^5.1.6"
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.1",
+    "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   },
   "engines": {
     "node": ">=18.0.0"

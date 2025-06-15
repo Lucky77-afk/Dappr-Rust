@@ -8,8 +8,6 @@ TypeScript SDK for interacting with the Dappr Solana program. This SDK provides 
 # Using npm
 npm install @dappr/sdk
 
-# Using yarn
-yarn add @dappr/sdk
 ```
 
 ## Prerequisites
@@ -17,6 +15,14 @@ yarn add @dappr/sdk
 - Node.js 16 or later
 - Yarn or npm
 - Solana CLI (for local development)
+
+## Features
+
+- **Token Management**: Mint, burn, and transfer DAPPR tokens
+- **Escrow System**: Create and manage milestone-based token escrows
+- **Multi-signature Support**: Secure emergency withdrawal functionality
+- **TypeScript Support**: Fully typed API for better developer experience
+- **Event System**: Subscribe to on-chain events
 
 ## Usage
 

@@ -2,11 +2,15 @@ import { Program, Provider, web3 } from '@project-serum/anchor';
 import { PublicKey, Connection, Keypair } from '@solana/web3.js';
 import { Token, TOKEN_PROGRAM_ID, AccountLayout } from '@solana/spl-token';
 import { Dappr, IDL } from './dappr';
+import { EscrowClient } from './escrow';
 
 export * from './types';
 
 // Re-export commonly used types
 export { PublicKey, Connection, Keypair };
+
+// Re-export escrow types
+export * from './escrow';
 
 // Program ID - should match the one in your program
 export const DAPPR_PROGRAM_ID = new PublicKey('Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS');
@@ -34,12 +38,14 @@ const TOKEN_METADATA = {
 type TokenType = keyof typeof TOKEN_METADATA;
 
 export class DapprClient {
-  private program: Program<Dappr>;
-  private provider: Provider;
+  public program: Program<Dappr>;
+  public provider: Provider;
+  public escrow: EscrowClient;
 
   constructor(provider: Provider, programId: PublicKey = DAPPR_PROGRAM_ID) {
     this.provider = provider;
     this.program = new Program<Dappr>(IDL, programId, provider);
+    this.escrow = new EscrowClient(this);
   }
 
   // Initialize the token mints
