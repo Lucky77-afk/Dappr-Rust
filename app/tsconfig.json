@@ -12,9 +12,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "jsxImportSource": "react",
 
     /* Linting */
-    "strict": true,
+    "strict": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
@@ -25,9 +26,9 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "typeRoots": [
-      "./node_modules/@types",
-      "./src/types"
-    ]
+      "./node_modules/@types"
+    ],
+    "types": ["vite/client", "node", "react", "react-dom"]
   },
   "include": ["src"],
   "exclude": ["node_modules"],

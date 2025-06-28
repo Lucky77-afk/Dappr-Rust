@@ -1,80 +1,7 @@
-import React, { createContext, useContext, useReducer, useCallback } from 'react';
+import React from 'react';
 import { useToast } from '../../hooks/useToast';
 
-type ToastType = 'success' | 'error' | 'info' | 'warning';
-
-interface ToastState {
-  toasts: Array<{
-    id: string;
-    type: ToastType;
-    message: string;
-    description?: string;
-    timeout?: number;
-  }>;
-}
-
-type ToastAction =
-  | { type: 'ADD_TOAST'; toast: Omit<ToastState['toasts'][0], 'id'> }
-  | { type: 'REMOVE_TOAST'; id: string };
-
-interface ToastContextType {
-  showToast: (type: ToastType, message: string, description?: string, timeout?: number) => string;
-  removeToast: (id: string) => void;
-  toasts: ToastState['toasts'];
-}
-
-const ToastContext = createContext<ToastContextType | undefined>(undefined);
-
-const toastReducer = (state: ToastState, action: ToastAction): ToastState => {
-  switch (action.type) {
-    case 'ADD_TOAST':
-      return {
-        ...state,
-        toasts: [...state.toasts, { ...action.toast, id: Math.random().toString(36).substr(2, 9) }]
-      };
-    case 'REMOVE_TOAST':
-      return {
-        ...state,
-        toasts: state.toasts.filter(toast => toast.id !== action.id)
-      };
-    default:
-      return state;
-  }
-};
-
-export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [state, dispatch] = useReducer(toastReducer, { toasts: [] });
-
-  const showToast = useCallback((type: ToastType, message: string, description?: string, timeout = 5000) => {
-    const id = Math.random().toString(36).substr(2, 9);
-    
-    dispatch({
-      type: 'ADD_TOAST',
-      toast: { type, message, description, timeout }
-    });
-
-    if (timeout > 0) {
-      setTimeout(() => {
-        dispatch({ type: 'REMOVE_TOAST', id });
-      }, timeout);
-    }
-
-    return id;
-  }, []);
-
-  const removeToast = useCallback((id: string) => {
-    dispatch({ type: 'REMOVE_TOAST', id });
-  }, []);
-
-  return (
-    <ToastContext.Provider value={{ showToast, removeToast, toasts: state.toasts }}>
-      {children}
-      <ToastContainer />
-    </ToastContext.Provider>
-  );
-};
-
-export const ToastContainer: React.FC = () => {
+export const ToastContainer = () => {
   const { toasts, removeToast } = useToast();
 
   if (toasts.length === 0) return null;
@@ -143,14 +70,6 @@ export const ToastContainer: React.FC = () => {
       ))}
     </div>
   );
-};
-
-export const useToast = (): ToastContextType => {
-  const context = useContext(ToastContext);
-  if (context === undefined) {
-    throw new Error('useToast must be used within a ToastProvider');
-  }
-  return context;
 };
 
 export default ToastContainer;

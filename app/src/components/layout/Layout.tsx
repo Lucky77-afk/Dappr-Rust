@@ -1,38 +1,41 @@
-import React from 'react';
-import Head from 'next/head';
+import { useEffect } from 'react';
 import { ToastContainer } from '../ui/Toast';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
-interface LayoutProps {
-  children: React.ReactNode;
+type LayoutProps = {
+  children: any;
   title?: string;
-}
+};
 
-const Layout: React.FC<LayoutProps> = ({ children, title = 'Dappr - Escrow Platform' }) => {
+function Layout({ 
+  children, 
+  title = 'Dappr - Escrow Platform' 
+}: LayoutProps) {
+  // Set the page title
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Head>
-        <title>{title}</title>
-        <meta name="description" content="Dappr - A decentralized escrow platform on Solana" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      {/* Meta tags should be in your index.html */}
 
       <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <Link href="/" className="flex-shrink-0 flex items-center">
+              <Link to="/" className="flex-shrink-0 flex items-center">
                 <span className="text-xl font-bold text-blue-600">Dappr</span>
               </Link>
               <nav className="hidden md:ml-10 md:flex space-x-8">
-                <Link href="/escrow" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
+                <Link to="/escrow" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
                   Escrows
                 </Link>
-                <Link href="/create" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
+                <Link to="/create" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
                   Create Escrow
                 </Link>
-                <Link href="/docs" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
+                <Link to="/docs" className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium">
                   Documentation
                 </Link>
               </nav>
